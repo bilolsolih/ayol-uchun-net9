@@ -2,6 +2,8 @@
 using AyolUchun.Features.Authentication.Models;
 using AyolUchun.Features.Courses.Configurations;
 using AyolUchun.Features.Courses.Models;
+using AyolUchun.Features.Interviews.Configurations;
+using AyolUchun.Features.Interviews.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AyolUchun;
@@ -15,6 +17,8 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
   public DbSet<Course> Courses { get; set; }
   public DbSet<SocialAccount> SocialAccounts { get; set; }
 
+  public DbSet<Interview> Interviews { get; set; }
+
   protected override void OnModelCreating(ModelBuilder builder)
   {
     base.OnModelCreating(builder);
@@ -24,5 +28,7 @@ public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(opti
     builder.ApplyConfiguration(new CategoryConfigurations());
     builder.ApplyConfiguration(new CourseConfigurations());
     builder.ApplyConfiguration(new SocialAccountConfigurations());
+
+    builder.ApplyConfiguration(new InterviewConfigurations());
   }
 }
